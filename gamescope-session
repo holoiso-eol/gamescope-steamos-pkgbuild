@@ -174,10 +174,19 @@ else
 	echo >&2 "!! Failed to claim global gamescope stats session"
 fi
 
+# Define orientation here
+DEVICENAME=$(cat /sys/devices/virtual/dmi/id/product_name)
+if [ "${DEVICENAME}" == "ONE XPLAYER" ] || [ "${DEVICENAME}" == "ONEXPLAYER mini-A07" ]; then
+    DEVICEORIENTATION="--force-orientation left"
+elif [ "${DEVICENAME}" == "AIR" ] || [ "${DEVICENAME}" == "AIR Pro" ]; then
+    DEVICEORIENTATION="--force-orientation left"
+fi
+
 gamescope \
 	--generate-drm-mode fixed \
 	--xwayland-count 2 \
 	-w 1280 -h 800 \
+	${DEVICEORIENTATION} \
 	--default-touch-mode 4 \
 	--hide-cursor-delay 3000 \
 	--max-scale 2 \
