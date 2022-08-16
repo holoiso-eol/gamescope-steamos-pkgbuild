@@ -15,7 +15,7 @@ jobs:
       - name: Prepare pacman keyring
         run: |
           pacman-key --init
-          pacman --noconfirm -Sy archlinux-keyring base-devel fakeroot dos2unix xorg-xwayland-jupiter libxres xcb-util-errors freerdp xcb-util-wm libxcomposite pixman libinput seatd pipewire wget meson wayland-protocols ninja glslang vulkan-headers
+          pacman --noconfirm -Sy archlinux-keyring base-devel fakeroot dos2unix git wget meson wayland-protocols ninja glslang vulkan-headers
           find . -type f -print0 | xargs -0 dos2unix
           chown -R nobody:nobody .
           
