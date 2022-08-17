@@ -176,9 +176,14 @@ fi
 
 # Define orientation here
 DEVICENAME=$(cat /sys/devices/virtual/dmi/id/product_name)
-if [ "${DEVICENAME}" == "ONE XPLAYER" ] || [ "${DEVICENAME}" == "ONEXPLAYER mini-A07" ]; then
+# OXP Devices
+OXP_LIST="ONE XPLAYER:ONEXPLAYER 1 T08:ONEXPLAYER 1S A08:ONEXPLAYER 1S T08:ONEXPLAYER mini A07:ONEXPLAYER mini GA72:ONEXPLAYER mini GT72:ONEXPLAYER GUNDAM GA72:ONEXPLAYER 2 ARP23"
+# AYANEO AIR Devices
+AIR_LIST="AIR:AIR Pro"
+
+if [[ ":$OXP_LIST:" =~ ":$DEVICENAME:"  ]]; then
     DEVICEORIENTATION="--force-orientation left"
-elif [ "${DEVICENAME}" == "AIR" ] || [ "${DEVICENAME}" == "AIR Pro" ]; then
+if [[ ":$AIR_LIST:" =~ ":$DEVICENAME:"  ]]; then
     DEVICEORIENTATION="--force-orientation left"
 fi
 
