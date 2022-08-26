@@ -188,13 +188,13 @@ elif [[ ":$AIR_LIST:" =~ ":$DEVICENAME:"  ]]; then
 fi
 
 # Check if we use a laptop
-IS_LAPTOP=$(sudo dmidecode | grep Notebook)
+IS_LAPTOP=$(sudo dmidecode --string chassis-type | grep Notebook)
 if [ -n "$IS_LAPTOP" ]; then
-	IS_NVIDIA=$(lspci -nn | grep -e VGA -e 3D | grep NVIDIA | cut -d ']' -f 3 | cut -c 3-)
+	IS_NVIDIA=$(lspci -nn | grep -i vga | grep -Po "10de:[a-z0-9]{4}")
 		if [[ -n "$IS_NVIDIA" ]]; then
 			echo "NVIDIA GPU and laptop detected. Setting proper output."
 			DRI_PRIME=1
-			MESA_VK_DEVICE_SELECT=$(lspci -nn | grep -e VGA -e 3D | grep NVIDIA | cut -d ']' -f 3 | cut -c 3-)
+			MESA_VK_DEVICE_SELECT=$(lspci -nn | grep -i vga | grep -Po "10de:[a-z0-9]{4}")
 			NV_PRIME_RENDER_OFFLOAD=1
 			VK_LAYER_NV_optimus=NVIDIA_only
 			__GLX_VENDOR_LIBRARY_NAME=nvidia
