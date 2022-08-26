@@ -183,13 +183,13 @@ AIR_LIST="AIR:AIR Pro"
 
 if [[ ":$OXP_LIST:" =~ ":$DEVICENAME:"  ]]; then
     DEVICEORIENTATION="--force-orientation left"
-if [[ ":$AIR_LIST:" =~ ":$DEVICENAME:"  ]]; then
+elif [[ ":$AIR_LIST:" =~ ":$DEVICENAME:"  ]]; then
     DEVICEORIENTATION="--force-orientation left"
 fi
 
 # Check if we use a laptop
 IS_LAPTOP=$(sudo dmidecode | grep Notebook)
-if [[ -n "$IS_LAPTOP" ]]; then
+if [ -n "$IS_LAPTOP" ]; then
 	IS_NVIDIA=$(lspci -nn | grep -e VGA -e 3D | grep NVIDIA | cut -d ']' -f 3 | cut -c 3-)
 		if [[ -n "$IS_NVIDIA" ]]; then
 			echo "NVIDIA GPU and laptop detected. Setting proper output."
@@ -202,6 +202,7 @@ if [[ -n "$IS_LAPTOP" ]]; then
 			echo "NVIDIA GPU not detected. Continuing as usual."
 		fi
 fi
+
 
 gamescope \
 	--generate-drm-mode fixed \
