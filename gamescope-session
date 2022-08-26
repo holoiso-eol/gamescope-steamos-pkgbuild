@@ -187,6 +187,22 @@ if [[ ":$AIR_LIST:" =~ ":$DEVICENAME:"  ]]; then
     DEVICEORIENTATION="--force-orientation left"
 fi
 
+# Check if we use a laptop
+IS_LAPTOP=$(sudo dmidecode | grep Notebook)
+if [[ -n "$IS_LAPTOP" ]]; then
+	IS_NVIDIA=$(lspci -nn | grep -e VGA -e 3D | grep NVIDIA | cut -d ']' -f 3 | cut -c 3-)
+		if [[ -n "$IS_NVIDIA" ]]; then
+			echo "NVIDIA GPU and laptop detected. Setting proper output."
+			DRI_PRIME=1
+			MESA_VK_DEVICE_SELECT=$(lspci -nn | grep -e VGA -e 3D | grep NVIDIA | cut -d ']' -f 3 | cut -c 3-)
+			NV_PRIME_RENDER_OFFLOAD=1
+			VK_LAYER_NV_optimus=NVIDIA_only
+			__GLX_VENDOR_LIBRARY_NAME=nvidia
+		else
+			echo "NVIDIA GPU not detected. Continuing as usual."
+		fi
+fi
+
 gamescope \
 	--generate-drm-mode fixed \
 	--xwayland-count 2 \
