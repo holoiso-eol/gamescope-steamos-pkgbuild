@@ -5,6 +5,9 @@
 ##
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
+# XOrg resolution workaround
+RES_X RES_Y <<<$(xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $3, $4}')
+
 export HOMETEST_DESKTOP=1
 export HOMETEST_DESKTOP_SESSION=plasma
 
@@ -207,7 +210,7 @@ fi
 gamescope \
 	--generate-drm-mode fixed \
 	--xwayland-count 2 \
-	-w 1280 -h 800 \
+	-h ${RES_Y} -H ${RES_Y} \
 	${DEVICEORIENTATION} \
 	--default-touch-mode 4 \
 	--hide-cursor-delay 3000 \
