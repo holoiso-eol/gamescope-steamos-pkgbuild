@@ -180,11 +180,15 @@ DEVICENAME=$(cat /sys/devices/virtual/dmi/id/product_name)
 OXP_LIST="ONE XPLAYER:ONEXPLAYER 1 T08:ONEXPLAYER 1S A08:ONEXPLAYER 1S T08:ONEXPLAYER mini A07:ONEXPLAYER mini GA72:ONEXPLAYER mini GT72:ONEXPLAYER GUNDAM GA72:ONEXPLAYER 2 ARP23"
 # AYANEO AIR Devices
 AIR_LIST="AIR:AIR Pro"
+# AOKZOE Devices
+AOK_LIST="AOKZOE A1 AR07"
 
 if [[ ":$OXP_LIST:" =~ ":$DEVICENAME:"  ]]; then
     DEVICEORIENTATION="--force-orientation left"
-if [[ ":$AIR_LIST:" =~ ":$DEVICENAME:"  ]]; then
+elif [[ ":$AIR_LIST:" =~ ":$DEVICENAME:"  ]]; then
     DEVICEORIENTATION="--force-orientation left"
+elif [[ ":$AOK_LIST:" =~ ":$DEVICENAME:"  ]]; then
+    DEVICEORIENTATION="--force-orientation upsidedown"
 fi
 
 gamescope \
