@@ -188,7 +188,7 @@ if [[ ":$OXP_LIST:" =~ ":$DEVICENAME:"  ]]; then
 elif [[ ":$AIR_LIST:" =~ ":$DEVICENAME:"  ]]; then
     DEVICEORIENTATION="--force-orientation left"
 elif [[ ":$AOK_LIST:" =~ ":$DEVICENAME:"  ]]; then
-    DEVICEORIENTATION="--force-orientation upsidedown"
+    DEVICEORIENTATION="--force-orientation left"
 fi
 
 gamescope \
