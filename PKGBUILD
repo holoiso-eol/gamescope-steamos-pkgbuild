@@ -46,6 +46,7 @@ prepare() {
 	rm -rf subprojects/stb
 	git clone "$srcdir/stb" subprojects/stb
 	cp -av subprojects/packagefiles/stb/* subprojects/stb/ # patch from the .wrap we elided
+	sed -i 's/vec4(outputValue, 0)/vec4(outputValue, 1.0)/' src/shaders/cs_composite_blit.comp # Intel Xe gfx -> mouse-blanking workaround
 }
 
 build() {
