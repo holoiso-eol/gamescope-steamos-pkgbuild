@@ -1,8 +1,8 @@
 # Maintainer: Pierre-Loup A. Griffais <pgriffais@valvesoftware.com>
 
 pkgname=gamescope
-_srctag=3.11.33-beta1
-pkgver=${_srctag//-/.}.snapshot$(date +%Y%m%d.%H%M)
+_srctag=3.11.48
+pkgver=${_srctag//-/.}.100.snapshot$(date +%Y%m%d.%H%M)
 pkgrel=4
 pkgdesc="gaming shell based on Xwayland, powered by Vulkan and DRM. with fixes from Samsagax for screen orientation"
 arch=(x86_64)
@@ -15,7 +15,7 @@ source=("gamescope-session"
         "gamescope-mimeapps.list"
         "steam_http_loader.desktop"
         "steam-http-loader"
-        "git+https://github.com/theVakhovskeIsTaken/gamescope.git"
+        "git+https://github.com/Plagman/gamescope.git#tag=$_srctag"
         "git+https://gitlab.freedesktop.org/wlroots/wlroots.git"
         "git+https://gitlab.freedesktop.org/emersion/libliftoff.git"
         # FIXME Upstream gamescope is just selecting master branch at build time, so we are arbitrarily snapshotting a
