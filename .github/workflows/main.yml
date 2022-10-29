@@ -17,6 +17,7 @@ jobs:
           pacman --noconfirm -S base-devel fakeroot dos2unix git wget meson wayland-protocols ninja glslang vulkan-headers
           find . -type f -print0 | xargs -0 dos2unix
           chown -R nobody:nobody .
+          git config --global protocol.file.allow always
           
       - name: Prepare dependencies
         run: |   
