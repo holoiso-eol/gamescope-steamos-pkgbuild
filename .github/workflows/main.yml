@@ -19,9 +19,13 @@ jobs:
           find . -type f -print0 | xargs -0 dos2unix
           chown -R nobody:nobody .
           
+      - name: Prepare dependencies
+        run: |   
+          pacman -S $(cat PKGBUILD | grep depends | cut -d "=" -f 2 | sed "s/(//g;s/)//g;s/'//g")
+          
       - name: Build Arch package
         run: |
-          su -s /bin/bash nobody -c "makepkg -s --nodeps && mkdir pkgout && mv *.tar.zst pkgout"
+          su -s /bin/bash nobody -c "makepkg -s && mkdir pkgout && mv *.tar.zst pkgout"
           
       - name: Add to arch repository
         run: |
