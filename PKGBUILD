@@ -40,7 +40,7 @@ prepare() {
 	git submodule init
 	git config submodule.subprojects/wlroots.url "$srcdir/wlroots"
 	git config submodule.subprojects/libliftoff.url "$srcdir/libliftoff"
-	git submodule update
+	git -c protocol.file.allow=always submodule update
 
 	# meson subprojects
 	rm -rf subprojects/stb
