@@ -262,8 +262,11 @@ if [ "$(cat /sys/devices/virtual/dmi/id/product_name)" == "Jupiter 1" ]; then
     (while true; do
         /usr/lib/hwsupport/power-button-handler.py
     done) &
+else
+    (while true; do
+        /usr/lib/holoiso-hwsupport/power-button-handler.py
+    done) &
 fi
-
 
 short_session_tracker_file="/tmp/steamos-short-session-tracker"
 short_session_duration=60
