@@ -214,12 +214,16 @@ OXP_LIST="ONE XPLAYER:ONEXPLAYER 1 T08:ONEXPLAYER 1S A08:ONEXPLAYER 1S T08:ONEXP
 AIR_LIST="AIR:AIR Pro"
 # AOKZOE Devices
 AOK_LIST="AOKZOE A1 AR07"
+# GPD WIN 3
+GPD_LIST="G1618-03"
 
 if [[ ":$OXP_LIST:" =~ ":$DEVICENAME:"  ]]; then
     DEVICEORIENTATION="--force-orientation left"
 elif [[ ":$AIR_LIST:" =~ ":$DEVICENAME:"  ]]; then
     DEVICEORIENTATION="--force-orientation left"
 elif [[ ":$AOK_LIST:" =~ ":$DEVICENAME:"  ]]; then
+    DEVICEORIENTATION="--force-orientation left"
+elif [[ ":$GPD_LIST:" =~ ":$DEVICENAME:"  ]]; then
     DEVICEORIENTATION="--force-orientation left"
 fi
 
